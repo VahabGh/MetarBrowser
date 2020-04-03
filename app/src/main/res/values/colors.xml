@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#04244b</color>
+    <color name="colorPrimaryDark">#041d3a</color>
+    <color name="colorAccent">#0175fc</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+
+    <color name="navy_light_5">#041d3a</color>
+    <color name="navy_light_4">#04244b</color>
+    <color name="navy_light_3">#103057</color>
+    <color name="navy_light_2">#2f5078</color>
+    <color name="navy_light_1">#5b789b</color>
+
+
+    <color name="gold">#FFCC00</color>
+    <color name="canary">#ecffa1</color>
+    <color name="yellow_alpha_44">#44ffa000</color>
+    <color name="yellow_light">#fdcb01</color>
+    <color name="yellow_alpha_aa">#aaffcb05</color>
+    <color name="yellow">#ffa000</color>
+    <color name="yellow_dark">#d07600</color>
+    <color name="red_alpha_44">#44ff1744</color>
+    <color name="red">#ff1744</color>
+    <color name="red_dark">#9c0f2b</color>
+
+    <color name="gray_33">#333333</color>
+
+    <!--GRAY-->
+    <!--replace with gray_5-->
+    <color name="gray_72">#727272</color>
+    <!--replace with gray_4-->
+    <color name="gray_bd">#bdbdbd</color>
+    <!--replace with gray_3-->
+    <color name="gray_cf">#CFD8DC</color>
+    <!--replace with gray_3-->
+    <color name="gray_ec">#eceff1</color>
+    <!--replace with gray_3-->
+    <color name="gray_e4">#e4e9ec</color>
+    <!--replace with gray_2-->
+    <color name="gray_f0">#f0f2f5</color>
+    <!--replace with gray_1-->
+    <color name="gray_f8">#f8f8f8</color>
+
+    <!--these are new colors for GRAY-->
+    <!--these colors will replace other GRAY colors-->
+    <color name="gray_6">#333333</color>
+    <color name="gray_5">#727272</color>
+    <color name="gray_4">#bdbdbd</color>
+    <color name="gray_3">#e0e0e0</color>
+    <color name="gray_2">#eeeeee</color>
+    <color name="gray_1">#fafafa</color>
+
+
+
+    <color name="gulf_blue">#031A4D</color>
+    <color name="pumpkin">#FD6B23</color>
+    <color name="picton_blue">#24A5E7</color>
+   <color name="jungle_green">#289B7C</color>
+    <color name="supernova_yellow">#FFCC00</color>
+    <color name="radical_red">#FF2F59</color>
+    <color name="java_green">#18D4D1</color>
+    <color name="bright_turquoise_blue">#10CEE4</color>
+    <color name="cast_skill_white">#F2F6F9</color>
+    <color name="cast_geyser">#D0D8DF</color>
+    <color name="slate_gray">#788795</color>
+    <color name="cloud_burst">#222F3F</color>
+    <color name="ebony_clay">#1E2837</color>
+    <color name="mirage">#19212E</color>
+    
+</resources>

@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".main.ui.view.MainActivity">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="mainViewModel"
+            type="com.vahabgh.metarbrowser.main.ui.viewmodel.MainViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/errorIcon"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/large_margin"
+                    android:tint="@color/colorAccent"
+                    app:srcCompat="@drawable/ic_pressure" />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/searchContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etSearch"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="@dimen/large_margin"
+                        android:hint="Airplane"
+                        android:singleLine="true"
+                        android:textColor="@color/colorAccent"
+                        android:textColorHint="@color/colorAccent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/btnSearch"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <ProgressBar
+                        android:id="@+id/progress"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="16dp"
+                        android:background="@color/colorPrimaryDark"
+                        android:textColor="@color/white"
+                        android:tint="@color/colorAccent"
+                        android:visibility="@{mainViewModel.loadingObservableField ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_airplan" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/btnSearch"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="16dp"
+                        android:textColor="@color/white"
+                        android:tint="@color/colorAccent"
+                        android:visibility="@{mainViewModel.loadingObservableField ? View.GONE : View.VISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_airplan" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <com.vahabgh.metarbrowser.main.utils.MyTextView
+                    android:id="@+id/errorView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/errorIcon"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/large_margin"
+                    android:background="@color/colorPrimaryDark"
+                    android:gravity="center"
+                    android:text="No data was found :("
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/x_large_text"
+                    android:visibility="@{mainViewModel.errorObservableField ? View.VISIBLE : View.GONE}"
+                    tools:visibility="visible" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="@{mainViewModel.errorObservableField ? View.GONE : View.VISIBLE}">
+
+                    <com.vahabgh.metarbrowser.main.utils.MyTextView
+                        android:id="@+id/tvName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/medium_margin"
+                        android:text="@{mainViewModel.airportObservableField.name}"
+                        android:textColor="@color/supernova_yellow"
+                        android:textSize="@dimen/large_text"
+                        tools:text="Name" />
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/medium_margin"
+                        android:padding="@dimen/large_margin"
+                        android:visibility="@{mainViewModel.airportObservableField.date!=null ? View.VISIBLE : View.GONE}">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iconDate"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:tint="@color/navy_light_1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_date" />
+
+                        <com.vahabgh.metarbrowser.main.utils.MyTextView
+                            android:id="@+id/date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/medium_margin"
+                            android:text="@{mainViewModel.airportObservableField.date}"
+                            android:textColor="@color/navy_light_1"
+                            android:textSize="@dimen/medium_text"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/iconDate"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="date" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:padding="@dimen/large_margin"
+                        android:visibility="@{mainViewModel.airportObservableField.visibility!=null ? View.VISIBLE : View.GONE}">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iconvisibility"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:tint="@color/navy_light_1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_visibility" />
+
+                        <com.vahabgh.metarbrowser.main.utils.MyTextView
+                            android:id="@+id/visibility"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/medium_margin"
+                            android:text="@{mainViewModel.airportObservableField.visibility}"
+                            android:textColor="@color/navy_light_1"
+                            android:textSize="@dimen/medium_text"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/iconvisibility"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="date" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:padding="@dimen/large_margin"
+                        android:visibility="@{mainViewModel.airportObservableField.wind!=null ? View.VISIBLE : View.GONE}">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iconwind"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:tint="@color/navy_light_1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_wind" />
+
+                        <com.vahabgh.metarbrowser.main.utils.MyTextView
+                            android:id="@+id/wind"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/medium_margin"
+                            android:text="@{mainViewModel.airportObservableField.wind}"
+                            android:textColor="@color/navy_light_1"
+                            android:textSize="@dimen/medium_text"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/iconwind"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="date" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:padding="@dimen/large_margin"
+                        android:visibility="@{mainViewModel.airportObservableField.windChill!=null ? View.VISIBLE : View.GONE}">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iconwindChill"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:tint="@color/navy_light_1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_wind_chill" />
+
+                        <com.vahabgh.metarbrowser.main.utils.MyTextView
+                            android:id="@+id/windChill"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/medium_margin"
+                            android:text="@{mainViewModel.airportObservableField.windChill}"
+                            android:textColor="@color/navy_light_1"
+                            android:textSize="@dimen/medium_text"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/iconwindChill"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="date" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:padding="@dimen/large_margin"
+                        android:visibility="@{mainViewModel.airportObservableField.dewPoint!=null ? View.VISIBLE : View.GONE}">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/icondewPoint"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:tint="@color/navy_light_1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_dew_point" />
+
+                        <com.vahabgh.metarbrowser.main.utils.MyTextView
+                            android:id="@+id/dewPoint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/medium_margin"
+                            android:text="@{mainViewModel.airportObservableField.windChill}"
+                            android:textColor="@color/navy_light_1"
+                            android:textSize="@dimen/medium_text"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/icondewPoint"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="date" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:padding="@dimen/large_margin"
+                        android:visibility="@{mainViewModel.airportObservableField.cycle!=null ? View.VISIBLE : View.GONE}">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iconcycle"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:tint="@color/navy_light_1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_cycle" />
+
+                        <com.vahabgh.metarbrowser.main.utils.MyTextView
+                            android:id="@+id/cycle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/medium_margin"
+                            android:text="@{mainViewModel.airportObservableField.cycle}"
+                            android:textColor="@color/navy_light_1"
+                            android:textSize="@dimen/medium_text"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/iconcycle"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="date" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:padding="@dimen/large_margin"
+                        android:visibility="@{mainViewModel.airportObservableField.weather!=null ? View.VISIBLE : View.GONE}">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iconweather"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:tint="@color/navy_light_1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_weather" />
+
+                        <com.vahabgh.metarbrowser.main.utils.MyTextView
+                            android:id="@+id/weather"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/medium_margin"
+                            android:text="@{mainViewModel.airportObservableField.weather}"
+                            android:textColor="@color/navy_light_1"
+                            android:textSize="@dimen/medium_text"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/iconweather"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="date" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:padding="@dimen/large_margin"
+                        android:visibility="@{mainViewModel.airportObservableField.ob!=null ? View.VISIBLE : View.GONE}">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iconob"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:tint="@color/navy_light_1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_weather" />
+
+                        <com.vahabgh.metarbrowser.main.utils.MyTextView
+                            android:id="@+id/ob"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/medium_margin"
+                            android:text="@{mainViewModel.airportObservableField.ob}"
+                            android:textColor="@color/navy_light_1"
+                            android:textSize="@dimen/medium_text"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/iconob"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="date" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:padding="@dimen/large_margin"
+                        android:visibility="@{mainViewModel.airportObservableField.pressureAltimeter!=null ? View.VISIBLE : View.GONE}">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iconpressureAltimeter"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:tint="@color/navy_light_1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_pressure" />
+
+                        <com.vahabgh.metarbrowser.main.utils.MyTextView
+                            android:id="@+id/pressureAltimeter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/medium_margin"
+                            android:text="@{mainViewModel.airportObservableField.pressureAltimeter}"
+                            android:textColor="@color/navy_light_1"
+                            android:textSize="@dimen/medium_text"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/iconpressureAltimeter"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="date" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:padding="@dimen/large_margin"
+                        android:visibility="@{mainViewModel.airportObservableField.skyConditions!=null ? View.VISIBLE : View.GONE}">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iconskyConditions"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:tint="@color/navy_light_1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_weather" />
+
+                        <com.vahabgh.metarbrowser.main.utils.MyTextView
+                            android:id="@+id/skyConditions"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/medium_margin"
+                            android:text="@{mainViewModel.airportObservableField.skyConditions}"
+                            android:textColor="@color/navy_light_1"
+                            android:textSize="@dimen/medium_text"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/iconskyConditions"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="date" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:padding="@dimen/large_margin"
+                        android:visibility="@{mainViewModel.airportObservableField.relativeHumidity!=null ? View.VISIBLE : View.GONE}">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iconrelativeHumidity"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:tint="@color/navy_light_1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_humidity" />
+
+                        <com.vahabgh.metarbrowser.main.utils.MyTextView
+                            android:id="@+id/relativeHumidity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/medium_margin"
+                            android:text="@{mainViewModel.airportObservableField.relativeHumidity}"
+                            android:textColor="@color/navy_light_1"
+                            android:textSize="@dimen/medium_text"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/iconrelativeHumidity"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="date" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:padding="@dimen/large_margin"
+                        android:visibility="@{mainViewModel.airportObservableField.temperature!=null ? View.VISIBLE : View.GONE}">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/icontemperature"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:tint="@color/navy_light_1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_temperature" />
+
+                        <com.vahabgh.metarbrowser.main.utils.MyTextView
+                            android:id="@+id/temperature"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/medium_margin"
+                            android:text="@{mainViewModel.airportObservableField.temperature}"
+                            android:textColor="@color/navy_light_1"
+                            android:textSize="@dimen/medium_text"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/icontemperature"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="date" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </ScrollView>
+
+
+    </RelativeLayout>
+
+
+</layout>
