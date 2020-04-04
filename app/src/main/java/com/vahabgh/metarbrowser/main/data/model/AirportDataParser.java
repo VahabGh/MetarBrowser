@@ -2,6 +2,8 @@ package com.vahabgh.metarbrowser.main.data.model;
 
 import com.vahabgh.metarbrowser.main.data.db.AirportEntity;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AirportDataParser {
@@ -46,9 +48,15 @@ public class AirportDataParser {
         return airportEntity;
     }
 
-    public static Airport parseDataToAirPort(List<String> lines) {
+    public static Airport parseDataToAirPort(String text) {
+//        List<String> lines = new ArrayList<>();
+//
+//        for (String item : text.split("\\R"))
+//            lines.add(item);
 
-        if (lines == null || lines.size() <= 0) return null;
+        List<String> lines = new ArrayList<>(Arrays.asList(text.split("\\R")));
+
+        if (lines.size() <= 0) return null;
 
         String name = "-";
         String date = "-";
@@ -130,7 +138,7 @@ public class AirportDataParser {
                 .build();
     }
 
-    public static String getValueAfterFirstColumn(String item) {
+    private static String getValueAfterFirstColumn(String item) {
 
         if (item.equals("")) return "-";
 

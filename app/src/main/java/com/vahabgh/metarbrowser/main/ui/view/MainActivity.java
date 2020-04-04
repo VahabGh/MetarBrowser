@@ -37,10 +37,8 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btnSearch).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String query = ((AppCompatEditText) findViewById(R.id.etSearch)).getText().toString().toUpperCase();
-                if (isQueryValid(query))
-                    mainViewModel.getData(query);
+                mainViewModel.getData(query);
                 hideKeyboard();
             }
         });
@@ -54,23 +52,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private boolean isQueryValid(String query) {
-        if (query.isEmpty()) {
-            Toast.makeText(MainActivity.this,
-                    "which air port you looking for?",
-                    Toast.LENGTH_SHORT).show();
-            return false;
-        }
-
-        if (!query.toLowerCase().startsWith("ed")) {
-            Toast.makeText(MainActivity.this,
-                    "German airports starts with ED ",
-                    Toast.LENGTH_SHORT).show();
-            return false;
-        }
-
-        return true;
-    }
 
     private void initViewModel() {
         Repository repository = new RepositoryImpl(getApplicationContext(), new MetarCacheServiceImpl(getApplicationContext()), new TextFileDownloaderImpl());

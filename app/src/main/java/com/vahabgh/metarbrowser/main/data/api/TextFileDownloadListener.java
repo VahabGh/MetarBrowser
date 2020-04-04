@@ -6,7 +6,7 @@ public interface TextFileDownloadListener {
 
     void onStart();
 
-    void onComplete(List<String> lines);
+    void onComplete(String text);
 
     void onError(Exception exp);
 

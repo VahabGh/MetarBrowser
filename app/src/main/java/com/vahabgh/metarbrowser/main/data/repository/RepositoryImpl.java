@@ -61,7 +61,6 @@ public class RepositoryImpl implements Repository {
             return;
 
         textFileDownloader.setPath("https://tgftp.nws.noaa.gov/data/observations/metar/decoded/" + query + ".TXT");
-        textFileDownloader.start();
         textFileDownloader.setTextFileDownloadListener(new TextFileDownloadListener() {
             @Override
             public void onStart() {
@@ -69,8 +68,8 @@ public class RepositoryImpl implements Repository {
             }
 
             @Override
-            public void onComplete(List<String> lines) {
-                Airport airport = AirportDataParser.parseDataToAirPort(lines);
+            public void onComplete(String text) {
+                Airport airport = AirportDataParser.parseDataToAirPort(text);
                 dataCallBack.onSuccess(airport);
                 saveInCache(query, airport);
             }
@@ -85,6 +84,7 @@ public class RepositoryImpl implements Repository {
                 readFromCache(query);
             }
         });
+        textFileDownloader.start();
 
     }
 
