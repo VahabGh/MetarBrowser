@@ -141,13 +141,13 @@
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/iconDate"
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
                             android:tint="@color/navy_light_1"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/ic_date" />
+                            app:srcCompat="@drawable/m_ic_date" />
 
                         <com.vahabgh.metarbrowser.main.utils.MyTextView
                             android:id="@+id/date"
@@ -173,13 +173,13 @@
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/iconvisibility"
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
                             android:tint="@color/navy_light_1"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/ic_visibility" />
+                            app:srcCompat="@drawable/m_ic_visibility" />
 
                         <com.vahabgh.metarbrowser.main.utils.MyTextView
                             android:id="@+id/visibility"
@@ -205,13 +205,13 @@
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/iconwind"
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
                             android:tint="@color/navy_light_1"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/ic_wind" />
+                            app:srcCompat="@drawable/m_ic_wind" />
 
                         <com.vahabgh.metarbrowser.main.utils.MyTextView
                             android:id="@+id/wind"
@@ -237,13 +237,13 @@
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/iconwindChill"
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
                             android:tint="@color/navy_light_1"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/ic_wind_chill" />
+                            app:srcCompat="@drawable/m_ic_wind_chill" />
 
                         <com.vahabgh.metarbrowser.main.utils.MyTextView
                             android:id="@+id/windChill"
@@ -270,13 +270,13 @@
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/icondewPoint"
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
                             android:tint="@color/navy_light_1"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/ic_dew_point" />
+                            app:srcCompat="@drawable/m_ic_dew_point" />
 
                         <com.vahabgh.metarbrowser.main.utils.MyTextView
                             android:id="@+id/dewPoint"
@@ -303,13 +303,13 @@
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/iconcycle"
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
                             android:tint="@color/navy_light_1"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/ic_cycle" />
+                            app:srcCompat="@drawable/m_ic_cycle" />
 
                         <com.vahabgh.metarbrowser.main.utils.MyTextView
                             android:id="@+id/cycle"
@@ -336,13 +336,13 @@
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/iconweather"
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
                             android:tint="@color/navy_light_1"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/ic_weather" />
+                            app:srcCompat="@drawable/m_ic_weather" />
 
                         <com.vahabgh.metarbrowser.main.utils.MyTextView
                             android:id="@+id/weather"
@@ -369,13 +369,13 @@
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/iconob"
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
                             android:tint="@color/navy_light_1"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/ic_weather" />
+                            app:srcCompat="@drawable/m_ic_weather" />
 
                         <com.vahabgh.metarbrowser.main.utils.MyTextView
                             android:id="@+id/ob"
@@ -401,13 +401,13 @@
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/iconpressureAltimeter"
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
                             android:tint="@color/navy_light_1"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/ic_pressure" />
+                            app:srcCompat="@drawable/m_ic_pressur" />
 
                         <com.vahabgh.metarbrowser.main.utils.MyTextView
                             android:id="@+id/pressureAltimeter"
@@ -433,13 +433,13 @@
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/iconskyConditions"
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
                             android:tint="@color/navy_light_1"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/ic_weather" />
+                            app:srcCompat="@drawable/m_ic_weather" />
 
                         <com.vahabgh.metarbrowser.main.utils.MyTextView
                             android:id="@+id/skyConditions"
@@ -465,13 +465,13 @@
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/iconrelativeHumidity"
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
                             android:tint="@color/navy_light_1"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/ic_humidity" />
+                            app:srcCompat="@drawable/m_ic_humidity" />
 
                         <com.vahabgh.metarbrowser.main.utils.MyTextView
                             android:id="@+id/relativeHumidity"
@@ -497,13 +497,13 @@
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/icontemperature"
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
                             android:tint="@color/navy_light_1"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/ic_temperature" />
+                            app:srcCompat="@drawable/m_ic_temperature" />
 
                         <com.vahabgh.metarbrowser.main.utils.MyTextView
                             android:id="@+id/temperature"

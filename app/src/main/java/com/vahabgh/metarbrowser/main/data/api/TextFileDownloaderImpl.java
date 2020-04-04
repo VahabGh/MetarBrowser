@@ -48,6 +48,7 @@ public class TextFileDownloaderImpl implements TextFileDownloader {
 
             URL url = new URL(path);
             URLConnection connection = url.openConnection();
+            connection.setReadTimeout(10000);//ten seconds
             connection.connect();
             InputStream is = url.openStream();
             byte data[] = new byte[1024];

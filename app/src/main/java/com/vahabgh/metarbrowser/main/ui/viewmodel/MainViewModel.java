@@ -33,6 +33,7 @@ public class MainViewModel extends BaseViewModel {
         if (!isQueryValid(query)) return;
         startLoading();
         hideErrorView();
+        airportObservableField.set(null);
 
         repository.getData(query.toUpperCase(), new DataCallBack<Airport>() {
             @Override
