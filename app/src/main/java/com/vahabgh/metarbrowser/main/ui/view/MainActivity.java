@@ -14,6 +14,8 @@ import com.vahabgh.metarbrowser.R;
 import com.vahabgh.metarbrowser.databinding.ActivityMainBinding;
 import com.vahabgh.metarbrowser.main.data.api.TextFileDownloaderImpl;
 import com.vahabgh.metarbrowser.main.data.db.MetarCacheServiceImpl;
+import com.vahabgh.metarbrowser.main.data.model.AirportDataMapper;
+import com.vahabgh.metarbrowser.main.data.model.AirportDataMapperImpl;
 import com.vahabgh.metarbrowser.main.data.repository.Repository;
 import com.vahabgh.metarbrowser.main.data.repository.RepositoryImpl;
 import com.vahabgh.metarbrowser.main.ui.viewmodel.MainViewModel;
@@ -37,7 +39,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private MainViewModel createViewModel() {
-        Repository repository = new RepositoryImpl(getApplicationContext(), new MetarCacheServiceImpl(getApplicationContext()), new TextFileDownloaderImpl());
+        Repository repository = new RepositoryImpl(getApplicationContext()
+                , new MetarCacheServiceImpl(getApplicationContext())
+                , new TextFileDownloaderImpl(),
+                new AirportDataMapperImpl());
         MainViewModel.Factory factory = new MainViewModel.Factory(repository);
         return new ViewModelProvider(this, factory).get(MainViewModel.class);
     }
@@ -59,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
     public class ClickHandler {
         public void searchClick(View view){
-            String query = ((AppCompatEditText) findViewById(R.id.etSearch)).getText().toString().toUpperCase();
+            String query = ((AppCompatEditText) findViewById(R.id.etSearch)).getText().toString();
             mainViewModel.getData(query);
             hideKeyboard();
         }

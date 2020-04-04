@@ -6,55 +6,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class AirportDataParser {
+public class AirportDataMapperImpl implements AirportDataMapper {
 
-    public static Airport convertAirportEntityToAirport(AirportEntity airportEntity) {
-        return new Airport.Builder()
-                .name(airportEntity.getName())
-                .date(airportEntity.getDate())
-                .wind(airportEntity.getWind())
-                .visibility(airportEntity.getVisibility())
-                .temperature(airportEntity.getTemperature())
-                .windChill(airportEntity.getWindChill())
-                .dewPoint(airportEntity.getDewPoint())
-                .relativeHumidity(airportEntity.getRelativeHumidity())
-                .weather(airportEntity.getWeather())
-                .ob(airportEntity.getOb())
-                .cycle(airportEntity.getCycle())
-                .pressureAltimeter(airportEntity.getPressureAltimeter())
-                .skyConditions(airportEntity.getSkyConditions())
-                .build();
-
-    }
-
-    public static AirportEntity convertAirportToAirportEntity(String aliasName,Airport airport){
-        AirportEntity airportEntity =  new AirportEntity();
-
-        airportEntity.setAliasName(aliasName);
-        airportEntity.setName(airport.getName());
-        airportEntity.setDate(airport.getDate());
-        airportEntity.setWind(airport.getWind());
-        airportEntity.setVisibility(airport.getVisibility());
-        airportEntity.setTemperature(airport.getTemperature());
-        airportEntity.setWindChill(airport.getWindChill());
-        airportEntity.setDewPoint(airport.getDewPoint());
-        airportEntity.setRelativeHumidity(airport.getRelativeHumidity());
-        airportEntity.setWeather(airport.getWeather());
-        airportEntity.setOb(airport.getOb());
-        airportEntity.setCycle(airport.getCycle());
-        airportEntity.setPressureAltimeter(airport.getPressureAltimeter());
-        airportEntity.setSkyConditions(airport.getSkyConditions());
-
-        return airportEntity;
-    }
-
-    public static Airport parseDataToAirPort(String text) {
-//        List<String> lines = new ArrayList<>();
-//
-//        for (String item : text.split("\\R"))
-//            lines.add(item);
-
-        List<String> lines = new ArrayList<>(Arrays.asList(text.split("\\R")));
+    @Override
+    public Airport map(String data) {
+        List<String> lines = new ArrayList<>(Arrays.asList(data.split("\\R")));
 
         if (lines.size() <= 0) return null;
 
@@ -138,7 +94,48 @@ public class AirportDataParser {
                 .build();
     }
 
-    private static String getValueAfterFirstColumn(String item) {
+    @Override
+    public AirportEntity map(String aliasName,Airport airport) {
+        AirportEntity airportEntity =  new AirportEntity();
+
+        airportEntity.setAliasName(aliasName);
+        airportEntity.setName(airport.getName());
+        airportEntity.setDate(airport.getDate());
+        airportEntity.setWind(airport.getWind());
+        airportEntity.setVisibility(airport.getVisibility());
+        airportEntity.setTemperature(airport.getTemperature());
+        airportEntity.setWindChill(airport.getWindChill());
+        airportEntity.setDewPoint(airport.getDewPoint());
+        airportEntity.setRelativeHumidity(airport.getRelativeHumidity());
+        airportEntity.setWeather(airport.getWeather());
+        airportEntity.setOb(airport.getOb());
+        airportEntity.setCycle(airport.getCycle());
+        airportEntity.setPressureAltimeter(airport.getPressureAltimeter());
+        airportEntity.setSkyConditions(airport.getSkyConditions());
+
+        return airportEntity;
+    }
+
+    @Override
+    public Airport map(AirportEntity airportEntity) {
+        return new Airport.Builder()
+                .name(airportEntity.getName())
+                .date(airportEntity.getDate())
+                .wind(airportEntity.getWind())
+                .visibility(airportEntity.getVisibility())
+                .temperature(airportEntity.getTemperature())
+                .windChill(airportEntity.getWindChill())
+                .dewPoint(airportEntity.getDewPoint())
+                .relativeHumidity(airportEntity.getRelativeHumidity())
+                .weather(airportEntity.getWeather())
+                .ob(airportEntity.getOb())
+                .cycle(airportEntity.getCycle())
+                .pressureAltimeter(airportEntity.getPressureAltimeter())
+                .skyConditions(airportEntity.getSkyConditions())
+                .build();
+    }
+
+    private  String getValueAfterFirstColumn(String item) {
 
         if (item.equals("")) return "-";
 
@@ -152,6 +149,5 @@ public class AirportDataParser {
 
         return item.substring(firstColumnChatIndex + 1).trim();
     }
-
 
 }

@@ -25,7 +25,7 @@ public class TextFileDownloaderImpl implements TextFileDownloader {
     public void start() {
 
         if (textFileDownloadListener == null)
-            throw new IllegalArgumentException("Text file downloader should textfile download lsitener");
+            throw new IllegalArgumentException("Text file downloader should text file download listener");
 
 
         if (!isPathValid()) {

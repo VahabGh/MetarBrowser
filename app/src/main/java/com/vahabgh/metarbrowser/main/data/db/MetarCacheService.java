@@ -7,6 +7,6 @@ public interface MetarCacheService {
 
     void saveInCache(AirportEntity airportEntity);
 
-    void readFromCache(String aliasName,DataCallBack<Airport> callBack);
+    void readFromCache(String aliasName,DataCallBack<AirportEntity> callBack);
 
 }

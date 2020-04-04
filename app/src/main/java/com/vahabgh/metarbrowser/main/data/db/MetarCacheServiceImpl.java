@@ -4,8 +4,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import com.vahabgh.metarbrowser.main.base.DataCallBack;
-import com.vahabgh.metarbrowser.main.data.model.Airport;
-import com.vahabgh.metarbrowser.main.data.model.AirportDataParser;
 
 import java.io.FileNotFoundException;
 
@@ -43,17 +41,17 @@ public class MetarCacheServiceImpl implements MetarCacheService {
 
 
     @Override
-    public void readFromCache(String aliasName, DataCallBack<Airport> callBack) {
+    public void readFromCache(String aliasName, DataCallBack<AirportEntity> callBack) {
         new ReadTask(aliasName, callBack).execute();
     }
 
 
     class ReadTask extends AsyncTask<Void, AirportEntity, AirportEntity> {
 
-        private DataCallBack<Airport> callBack;
+        private DataCallBack<AirportEntity> callBack;
         private String aliasName;
 
-        public ReadTask(String aliasName, DataCallBack<Airport> callBack) {
+        public ReadTask(String aliasName, DataCallBack<AirportEntity> callBack) {
             this.callBack = callBack;
             this.aliasName = aliasName;
         }
@@ -68,7 +66,7 @@ public class MetarCacheServiceImpl implements MetarCacheService {
             super.onPostExecute(airport);
             if (callBack != null) {
                 if (airport != null)
-                    callBack.onSuccess(AirportDataParser.convertAirportEntityToAirport(airport));
+                    callBack.onSuccess(airport);
                 else
                     callBack.onFailure(new FileNotFoundException());
             }

@@ -6,13 +6,13 @@ import android.net.NetworkInfo;
 
 import com.vahabgh.metarbrowser.main.data.api.TextFileDownloadListener;
 import com.vahabgh.metarbrowser.main.data.api.TextFileDownloader;
+import com.vahabgh.metarbrowser.main.data.db.AirportEntity;
 import com.vahabgh.metarbrowser.main.data.db.MetarCacheService;
-import com.vahabgh.metarbrowser.main.data.model.AirportDataParser;
+import com.vahabgh.metarbrowser.main.data.model.AirportDataMapper;
 import com.vahabgh.metarbrowser.main.data.model.Airport;
 import com.vahabgh.metarbrowser.main.base.DataCallBack;
 
 import java.io.FileNotFoundException;
-import java.util.List;
 
 public class RepositoryImpl implements Repository {
 
@@ -20,15 +20,20 @@ public class RepositoryImpl implements Repository {
     private TextFileDownloader textFileDownloader;
     private MetarCacheService metarCacheService;
     private Context applicationContext;
+    private AirportDataMapper airportDataMapper;
 
-    public RepositoryImpl(Context applicationContext,MetarCacheService metarCacheService, TextFileDownloader textFileDownloader) {
+    public RepositoryImpl(Context applicationContext,MetarCacheService metarCacheService, TextFileDownloader textFileDownloader,AirportDataMapper airportDataMapper) {
         this.textFileDownloader = textFileDownloader;
         this.metarCacheService = metarCacheService;
         this.applicationContext = applicationContext;
+        this.airportDataMapper = airportDataMapper;
     }
 
     @Override
     public void getData(String query, DataCallBack<Airport> dataCallBack) {
+
+        if (airportDataMapper == null)
+            throw new IllegalArgumentException("repository needs a dataMapper implementation :)");
 
         this.dataCallBack = dataCallBack;
 
@@ -43,10 +48,10 @@ public class RepositoryImpl implements Repository {
         if (metarCacheService == null)
             return;
 
-        metarCacheService.readFromCache(query, new DataCallBack<Airport>() {
+        metarCacheService.readFromCache(query, new DataCallBack<AirportEntity>() {
             @Override
-            public void onSuccess(Airport airport) {
-                dataCallBack.onSuccess(airport);
+            public void onSuccess(AirportEntity airport) {
+                dataCallBack.onSuccess(airportDataMapper.map(airport));
             }
 
             @Override
@@ -69,7 +74,7 @@ public class RepositoryImpl implements Repository {
 
             @Override
             public void onComplete(String text) {
-                Airport airport = AirportDataParser.parseDataToAirPort(text);
+                Airport airport = airportDataMapper.map(text);
                 dataCallBack.onSuccess(airport);
                 saveInCache(query, airport);
             }
@@ -90,7 +95,7 @@ public class RepositoryImpl implements Repository {
 
 
     private void saveInCache(String query, Airport airport) {
-        metarCacheService.saveInCache(AirportDataParser.convertAirportToAirportEntity(query, airport));
+        metarCacheService.saveInCache(airportDataMapper.map(query, airport));
     }
 
     public  boolean isNetworkConnected() {

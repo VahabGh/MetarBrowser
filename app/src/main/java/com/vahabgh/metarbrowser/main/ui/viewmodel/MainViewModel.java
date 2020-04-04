@@ -34,7 +34,7 @@ public class MainViewModel extends BaseViewModel {
         startLoading();
         hideErrorView();
 
-        repository.getData(query, new DataCallBack<Airport>() {
+        repository.getData(query.toUpperCase(), new DataCallBack<Airport>() {
             @Override
             public void onSuccess(Airport airport) {
                 stopLoading();
