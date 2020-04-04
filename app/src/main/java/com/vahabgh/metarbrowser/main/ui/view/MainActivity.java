@@ -3,7 +3,6 @@ package com.vahabgh.metarbrowser.main.ui.view;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,43 +28,40 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        initViewModel();
-        setSearchClickListener();
+        init();
     }
 
-    private void setSearchClickListener() {
-        findViewById(R.id.btnSearch).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String query = ((AppCompatEditText) findViewById(R.id.etSearch)).getText().toString().toUpperCase();
-                mainViewModel.getData(query);
-                hideKeyboard();
-            }
-        });
-
-
-        findViewById(R.id.errorView).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                v.setVisibility(View.GONE);
-            }
-        });
+    private void init() {
+        mainViewModel = createViewModel();
+        bindModels();
     }
 
-
-    private void initViewModel() {
+    private MainViewModel createViewModel() {
         Repository repository = new RepositoryImpl(getApplicationContext(), new MetarCacheServiceImpl(getApplicationContext()), new TextFileDownloaderImpl());
         MainViewModel.Factory factory = new MainViewModel.Factory(repository);
-        mainViewModel = new ViewModelProvider(this, factory).get(MainViewModel.class);
-        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        binding.setMainViewModel(mainViewModel);
-        binding.setLifecycleOwner(this);
+        return new ViewModelProvider(this, factory).get(MainViewModel.class);
     }
 
+    private void bindModels() {
+        if (mainViewModel == null) return;
+        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        binding.setMainViewModel(mainViewModel);
+        binding.setClickHandler(new ClickHandler());
+        binding.setLifecycleOwner(this);
+    }
 
     public void hideKeyboard() {
         if (getCurrentFocus() == null) return;
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+    }
+
+
+    public class ClickHandler {
+        public void searchClick(View view){
+            String query = ((AppCompatEditText) findViewById(R.id.etSearch)).getText().toString().toUpperCase();
+            mainViewModel.getData(query);
+            hideKeyboard();
+        }
     }
 }
