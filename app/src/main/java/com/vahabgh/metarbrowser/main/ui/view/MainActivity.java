@@ -14,7 +14,6 @@ import com.vahabgh.metarbrowser.R;
 import com.vahabgh.metarbrowser.databinding.ActivityMainBinding;
 import com.vahabgh.metarbrowser.main.data.api.TextFileDownloaderImpl;
 import com.vahabgh.metarbrowser.main.data.db.MetarCacheServiceImpl;
-import com.vahabgh.metarbrowser.main.data.model.AirportDataMapper;
 import com.vahabgh.metarbrowser.main.data.model.AirportDataMapperImpl;
 import com.vahabgh.metarbrowser.main.data.repository.Repository;
 import com.vahabgh.metarbrowser.main.data.repository.RepositoryImpl;
